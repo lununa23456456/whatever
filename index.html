@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luma, a private password coach and chat assistant.">
+  <title>Luma | Private password coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✦</span><span>Luma</span><small>PRIVATE COACH</small></div>
+      <div class="privacy-note"><span class="status-dot"></span><div><strong>Local-first mode</strong><p>Your chat stays in this browser.</p></div></div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="coach"><span>✧</span> Coach <kbd>⌘ 1</kbd></button>
+        <button class="nav-item" data-view="vault"><span>▱</span> Saved guidance <kbd>⌘ 2</kbd></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="profile-orb">Y</div><div><strong>Your workspace</strong><small>Personal security</small></div><button class="icon-button" id="clearData" title="Clear local conversation">⋯</button></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageTitle">Password coach</strong></div><button class="api-button" id="apiButton"><span class="key-icon">⌘</span> Gemini <span class="pill">OPTIONAL</span></button></header>
+
+      <section class="coach-view" id="coachView">
+        <div class="intro"><div class="eyebrow">A calmer way to secure your accounts</div><h1>Make your next<br><em>password</em> a strong one.</h1><p>Tell me what you need. I can strengthen a phrase, create something new, or guide you through a reset.</p></div>
+        <div class="workspace-grid">
+          <section class="chat-panel panel">
+            <div class="panel-header"><div><span class="live-indicator"></span><strong>Luma assistant</strong><small>Ready when you are</small></div><button class="icon-button" id="newChat" title="Start a new chat">＋</button></div>
+            <div class="messages" id="messages" aria-live="polite"></div>
+            <div class="suggestions"><button data-prompt="Make luna stronger">Strengthen a password</button><button data-prompt="Generate a strong password">Generate one</button><button data-prompt="How do I change my password?">Show me how</button></div>
+            <form class="composer" id="composer"><input id="messageInput" autocomplete="off" placeholder="Ask Luma anything..." aria-label="Message Luma"><button type="submit" class="send-button" aria-label="Send message">↗</button></form>
+            <div class="composer-note"><span>⌁</span> Never share a password you still use anywhere else.</div>
+          </section>
+          <aside class="insight-panel"><div class="insight-heading"><span>✦</span><div><strong>Security snapshot</strong><small>Based on this session</small></div></div><div class="score-ring"><div><strong id="scoreValue">—</strong><small>score</small></div></div><div class="score-label" id="scoreLabel">Start by sharing a phrase</div><div class="meter"><span id="meterFill"></span></div><div class="snapshot-list"><div><span class="check">✓</span><span>Length matters most</span><strong id="lengthCheck">—</strong></div><div><span class="check">✓</span><span>Unique to one account</span><strong id="uniqueCheck">—</strong></div><div><span class="check">✓</span><span>No personal details</span><strong id="detailsCheck">—</strong></div></div><div class="tip"><span>✺</span><p><strong>Small tip</strong><br>Use a memorable sentence, then add separators and symbols.</p></div></aside>
+        </div>
+      </section>
+
+      <section class="vault-view hidden" id="vaultView"><div class="intro compact"><div class="eyebrow">Your private library</div><h1>Saved <em>guidance.</em></h1><p>Your conversation history is stored only in this browser. Password text is never saved.</p></div><div class="saved-list panel" id="savedList"></div></section>
+    </main>
+  </div>
+  <dialog id="apiDialog"><form method="dialog"><button class="dialog-close" value="cancel">×</button><div class="eyebrow">Optional connection</div><h2>Bring your own Gemini key.</h2><p>When enabled, Luma can use Gemini for more flexible conversation. Your key is kept in memory only for this tab and is never stored.</p><label>Gemini API key<input type="password" id="apiKey" placeholder="AIza..." autocomplete="off"></label><div class="dialog-actions"><button value="cancel" class="text-button">Not now</button><button value="default" class="primary-button" id="saveApi">Use Gemini</button></div></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
